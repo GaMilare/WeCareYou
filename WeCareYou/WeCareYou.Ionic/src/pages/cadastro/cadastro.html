@@ -1,0 +1,144 @@
+<!--
+  Generated template for the CadastroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <!-- <ion-navbar>
+    <ion-title>cadastro</ion-title>
+  </ion-navbar> -->
+
+</ion-header>
+
+
+<ion-content fullscreen>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="assets/imgs/WeCareYou-Logo.jpg" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-list inset>
+      <ion-col>
+
+        <ion-list>
+          <ion-item class="item-input">
+            <ion-label class="label-text">Tipo de usuário</ion-label>
+            <ion-select class="label-text" [(ngModel)]="registerCredentials.userType" (ionChange)="onUserTypeChange()"
+              name="TipoUsuario" id="UserType">
+              <ion-option value="cliente">Cliente</ion-option>
+              <ion-option value="prestador">Prestador</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+        <div id="cliente">
+          <form (ngSubmit)="registerCliente()" #registerForm="ngForm">
+            <ion-item>
+              <ion-label class="label-text">Nome: </ion-label>
+              <ion-input class="label-text" type="text" name="name"
+                [(ngModel)]="registerCredentials.name" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Email: </ion-label>
+              <ion-input class="label-text" type="text" name="email"
+                [(ngModel)]="registerCredentials.email" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Celular: </ion-label>
+              <ion-input class="label-text" type="text" name="celphone"
+                [(ngModel)]="registerCredentials.celphone" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Senha: </ion-label>
+              <ion-input class="label-text" type="password" name="password"
+                [(ngModel)]="registerCredentials.password" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Confirmar Senha: </ion-label>
+              <ion-input class="label-text" type="password" name="confirmation_password"
+                [(ngModel)]="registerCredentials.confirmation_password" required></ion-input>
+            </ion-item>
+
+            <ion-row>
+              <ion-col class="signup-col">
+                <button ion-button style="background-color: #009788; color: white" full type="submit"
+                  [disabled]="!registerForm.form.valid">Cadastrar</button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </div>
+
+        <div id="prestador">
+          <form (ngSubmit)="registerPrestador()" #registerForm="ngForm">
+            <ion-item>
+              <ion-label class="label-text">Nome: </ion-label>
+              <ion-input class="label-text" type="text" name="name"
+                [(ngModel)]="registerCredentials.name" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Email: </ion-label>
+              <ion-input class="label-text" type="text" name="email"
+                [(ngModel)]="registerCredentials.email" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Celular: </ion-label>
+              <ion-input class="label-text" type="text" name="celphone"
+                [(ngModel)]="registerCredentials.celphone" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Coren: </ion-label>
+              <ion-input class="label-text" type="text" name="coren"
+                [(ngModel)]="registerCredentials.coren" required></ion-input>
+            </ion-item>
+
+            <ion-label class="label-text">Servicos: </ion-label>
+            <ion-select multiple="true" class="label-text" [(ngModel)]="registerCredentials.services" name="Servicos"
+              id="Services">
+              <ion-option value="hc1">Home care n1</ion-option>
+              <ion-option value="hc2">Home care n2</ion-option>
+              <ion-option value="hc3">Home care n3</ion-option>
+              <ion-option value="ac1">Acompanhamento médico</ion-option>
+            </ion-select>
+
+            <ion-item>
+              <ion-label class="label-text">Senha: </ion-label>
+              <ion-input class="label-text" type="password" name="password"
+                [(ngModel)]="registerCredentials.password" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Confirmar Senha: </ion-label>
+              <ion-input class="label-text" type="password" name="confirmation_password"
+                [(ngModel)]="registerCredentials.confirmation_password" required></ion-input>
+            </ion-item>
+
+            <ion-row>
+              <ion-col class="signup-col">
+                  <button ion-button style="background-color: #009788; color: white" full type="submit"
+                  [disabled]="!registerForm.form.valid">Cadastrar</button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </div>
+
+      </ion-col>
+    </ion-list>
+  </ion-row>
+
+</ion-content>

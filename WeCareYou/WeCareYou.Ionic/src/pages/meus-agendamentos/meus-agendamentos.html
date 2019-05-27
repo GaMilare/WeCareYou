@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content fullscreen>
+  <!-- <div style='height: 20%'></div> -->
+
+  <ion-row class="logo-row">
+
+    <ion-col>
+
+      <img src="assets/imgs/WeCareYou-Logo200.jpg" class="img">
+
+    </ion-col>
+
+  </ion-row>
+  <div style="padding: 15px">
+    <h2 style="text-align: center; color: #009788">Seus agendamentos</h2>
+    <ion-item no-lines *ngFor="let cotacao of cotacoes" (click)="goToHorario(prestador.id)">
+      <ion-card style="background-color: #009788">
+        <ion-card-content>
+          <ion-col col-10 >
+            <p class="card-text">Status: {{cotacao.status}}</p>
+            <p class="card-text">Endereço: {{cotacao.endereco}}</p>
+            <p class="card-text">Servico: {{cotacao.servico}}</p>
+            <p class="card-text">Data: {{cotacao.data}}</p>
+            <p class="card-text">Hora: {{cotacao.hora}} </p>
+            <p class="card-text">Preco médio: {{cotacao.preco}} </p>
+            <p class="card-text">Preco ofertado: {{cotacao.preco}} </p>
+          </ion-col>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </div>
+</ion-content>

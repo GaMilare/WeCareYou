@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content fullscreen>
+  <!-- <div style='height: 20%'></div> -->
+
+  <ion-row class="logo-row">
+
+    <ion-col>
+
+      <img src="assets/imgs/WeCareYou-Logo200.jpg" class="img">
+
+    </ion-col>
+
+  </ion-row>
+
+  <div style="padding: 15px">
+    <ion-row>
+      <ion-col col-12 text-center>
+        <p style="text-align: center; color: #009788; font-size: 18px">Serviços proximos a você</p>
+      </ion-col>
+    </ion-row>
+    <ion-item no-lines *ngFor="let cotacao of cotacoes; let i = index" (click)="goToHorario(prestador.id)">
+      <ion-card (click)="exibir(i)">
+        
+        
+        <ion-card-content>
+          <ion-col col-10>
+            <p class="card-text">Status: {{cotacao.status}}</p>
+            <p class="card-text">Nome cliente: {{cotacao.nomecliente}}</p>
+            <p class="card-text">Servico: {{cotacao.servico}}</p>
+            <p class="card-text">Data: {{cotacao.data}}</p>
+            <p class="card-text">Hora: {{cotacao.hora}} </p>
+            <p class="card-text">Valor sugerido: {{cotacao.preco}} </p>
+            <div id={{i}}>
+              <p class="card-text">Rua: {{cotacao.rua}}</p>
+              <p class="card-text">Numero: {{cotacao.numero}}</p>
+              <p class="card-text">Complemnto: {{cotacao.complemento}}</p>
+              <p class="card-text">Forma de pag: {{cotacao.formaDePagamento}}</p>
+              <ion-row style="text-align: center;">
+                <button ion-button expand="full" fill="outline" (click)="cancelar('cotacao.id')"
+                  style="text-align: center; width: 100%">
+                  <ion-icon name="md-close"></ion-icon>
+                  <p style="color: #009788">____</p>
+                  Cancelar
+                </button>
+              </ion-row>
+              <ion-row style="text-align: center;">
+                <button ion-button expand="full" fill="outline" (click)="chat('cotacao.id')"
+                  style="text-align: center; width: 100%">
+                  <ion-icon name="logo-whatsapp"></ion-icon>
+                  <p style="color: #009788">______</p>
+                  Chat
+                </button>
+              </ion-row>
+              <ion-row style="text-align: center;">
+                <button ion-button expand="full" fill="outline" (click)="aceitar('cotacao.id')"
+                  style="text-align: center;  width: 100%">
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                  <p style="color: #009788">____</p>
+                  Aceitar   
+                </button>
+              </ion-row>
+            </div>
+          </ion-col>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+  </div>
+</ion-content>

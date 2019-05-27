@@ -1,0 +1,119 @@
+<ion-header style="background-color: #009788">
+  <ion-navbar>
+
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen>
+  <!-- <div style='height: 20%'></div> -->
+
+  <ion-row class="logo-row">
+    <ion-col>
+      <img src="assets/imgs/WeCareYou-Logo200.jpg" class="img">
+    </ion-col>
+  </ion-row>
+  <ion-grid>
+    <ion-row>
+      <ion-col (click)="exibe('dadosPessoais')" class="icon-col" >
+        <ion-icon name="md-contact"></ion-icon>
+      </ion-col>
+      <ion-col (click)="exibe('dadosResidenciais')" class="icon-col">
+        <ion-icon name="md-map"></ion-icon>
+      </ion-col>
+      <ion-col (click)="exibe('dadosPagamento')" class="icon-col">
+        <ion-icon name="md-cash"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div style="padding: 15px">
+    <div class="big-box" id="dadosPessoais">
+        <h2 style="text-align: center">Dados pessoais</h2>
+      
+        <ion-item class="label-text">
+          <ion-label>Nome: </ion-label>
+          <ion-label style="text-align: right"> {{LoggedUser.nome}} </ion-label>
+        </ion-item>
+        <ion-item class="label-text">
+            <ion-label>Email:</ion-label>
+            <ion-label style="text-align: right"> {{LoggedUser.email}} </ion-label>
+          </ion-item>
+        <ion-item class="label-text">
+          <ion-label>Celular: </ion-label>
+          <ion-label style="text-align: right"> {{LoggedUser.celular}} </ion-label>
+        </ion-item>
+        <ion-item class="label-text">
+          <ion-label>CPF: </ion-label>
+          <ion-label style="text-align: right"> {{LoggedUser.cpf}} </ion-label>
+        </ion-item>
+        <ion-item class="label-text">
+          <ion-label>Senha: </ion-label>
+          <ion-input type="password" placeholder="Senha" name="Senha" ></ion-input>
+        </ion-item>
+        <ion-row>
+          <button ion-button style="width: 100%;background-color: #009788; color: white" (click)=alteraDados(LoggedUser)>Alterar dados</button>
+        </ion-row>        
+    </div>
+    <div class="big-box" id="dadosResidenciais">
+        <h2 style="text-align: center">Dados Endereço</h2>
+      
+        <ion-item class="label-text">
+          <ion-label>CEP:</ion-label>
+          <ion-label style="text-align: right"> {{LoggedUser.localizacao.cep}} </ion-label>
+        </ion-item>
+        <ion-item class="label-text">
+            <ion-label>Rua:</ion-label>
+            <ion-label style="text-align: right"> {{LoggedUser.localizacao.rua}} </ion-label>
+          </ion-item>
+        <ion-item class="label-text">
+          <ion-label>Cidade: </ion-label>
+          <ion-label style="text-align: right"> {{LoggedUser.localizacao.cidade}} </ion-label>
+        </ion-item>
+        <ion-item class="label-text">
+            <ion-label>Complemento: </ion-label>
+            <ion-label style="text-align: right"> {{LoggedUser.localizacao.complemento}} </ion-label>
+          </ion-item>
+        <ion-item class="label-text">
+          <ion-label>Número: </ion-label>
+          <ion-label style="text-align: right"> {{LoggedUser.localizacao.numero}} </ion-label>
+        </ion-item>
+        <ion-item class="label-text">
+          <ion-label>UF: </ion-label>
+          <ion-label style="text-align: right"> {{LoggedUser.localizacao.uf}} </ion-label>
+        </ion-item>
+        <ion-row>
+            <button ion-button style="width: 100%; background-color: #009788; color: white" (click)=alteraDados(LoggedUser)>Alterar dados</button>
+          </ion-row> 
+    </div>
+
+    <div class="big-box" id="dadosPagamento">
+        <h2 style="text-align: center">Dados Pagamento</h2>
+      
+        <ion-item class="label-text">
+          <ion-label>Nome Prestador:</ion-label>
+          <ion-label style="text-align: right"> {{LoggedUser.dadosPagamento.cardName}} </ion-label>
+        </ion-item>
+        <ion-item class="label-text">
+            <ion-label>Endereço:</ion-label>
+            <ion-label style="text-align: right"> {{LoggedUser.dadosPagamento.cardNumber}} </ion-label>
+          </ion-item>
+        <ion-item class="label-text">
+          <ion-label>Serviço: </ion-label>
+          <ion-label style="text-align: right"> {{LoggedUser.dadosPagamento.cardExpireDate}} </ion-label>
+        </ion-item>
+        <ion-item class="label-text">
+          <ion-label>Data: </ion-label>
+          <ion-datetime display-format="MM/YYYY" picker-format="MMMM YYYY"></ion-datetime>
+        </ion-item>
+        <ion-row>
+            <button ion-button style="width: 100%; background-color: #009788; color: white" (click)=alteraDados(LoggedUser)>Alterar dados</button>
+          </ion-row> 
+    </div>
+  </div>
+</ion-content>
