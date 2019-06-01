@@ -11,8 +11,9 @@
   <ion-content>
 
     <ion-list>
-        <button ion-item menuClose (click)="onOpenPage(settingsPage)"><ion-icon name="md-list" item-left></ion-icon> Minhas solicitações</button>
-        <button ion-item menuClose (click)="onOpenPage(otherPage)"><ion-icon name="md-exit" item-left></ion-icon>Sair</button>
+        <button ion-item menuClose (click)="goToMyOrders()"><ion-icon name="md-list" item-left></ion-icon> Minhas solicitações</button>
+        <button ion-item menuClose (click)="goToMyInfo()"><ion-icon name="md-list" item-left></ion-icon> Minha conta</button>
+        <button ion-item menuClose (click)="goToMyInfo()"><ion-icon name="md-exit" item-left></ion-icon>Sair</button>
     </ion-list>
 
   </ion-content>

@@ -1,3 +1,6 @@
+import { MinhaContaPage } from './../minha-conta/minha-conta';
+import { MeusAgendamentosPage } from './../meus-agendamentos/meus-agendamentos';
+import { ServicosPage } from './../servicos/servicos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -17,8 +20,15 @@ export class LoginPage {
   }
 
   abrirServicos():void{
-    debugger
-    this.navCtrl.setRoot('ServicosPage')
+    this.navCtrl.setRoot(ServicosPage)
   }
+    
+goToMyOrders(){
+  this.navCtrl.push(MeusAgendamentosPage);
+}
+
+goToMyInfo(){
+  this.navCtrl.push(MinhaContaPage);
+}
 
 }

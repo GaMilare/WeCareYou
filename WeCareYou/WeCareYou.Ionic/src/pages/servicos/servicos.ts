@@ -1,6 +1,7 @@
 import Jquery from 'jQuery';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DadosCotacaoPage } from '../dados-cotacao/dados-cotacao';
 
 @IonicPage()
 @Component({
@@ -76,6 +77,10 @@ export class ServicosPage {
           Jquery("#dadosServicos").toggle();
         break;
     }
+  }
+
+  goToSummaryQuotation(value){
+    this.navCtrl.push(DadosCotacaoPage)
   }
   // this.navCtrl.push()
 }
