@@ -22,13 +22,17 @@ usuarioController.prototype.post = async (req, res) => {
     _validationContract.isRequired(req.body.senhaConfirmacao, "A snha informada é obrigatoria");
     _validationContract.isTrue(req.body.senha != req.body.senhaConfirmacao, "A senha e a confirmacao sao distintas");
 
-    let usuarioExistente = false//await _repo.isEmailExistente(req.body.email);
-    if (usuarioExistente) {
-        _validationContract.isTrue(usuarioExistente.nome != undefined, "Já existe o email cadastrado");
+    if (req.body.email) {
+        let usuarioExistente = await _repo.isEmailExistente(req.body.email);
+        if (usuarioExistente) {
+            _validationContract.isTrue(usuarioExistente.nome != undefined, "Já existe o email cadastrado");
 
+        }
     }
     //senha criptografada
-    req.body.senha = md5(req.body.senha);
+    if (req.body.senha) {
+        req.body.senha = md5(req.body.senha);
+    }
     controllerBase.post(_repo, _validationContract, req, res);
 
 };
@@ -67,9 +71,8 @@ usuarioController.prototype.delete = async (req, res) => {
 
 usuarioController.prototype.autenticar = async (req, res) => {
     let _validationContract = new validation();
-
-    _validationContract.isRequired(req.body.email, "Informe seu e-mail");
-    _validationContract.isEmail(req.body.email, "Seu e-mail informado é invalido");
+    console.log(req.body)
+    _validationContract.isRequired(req.body.cpf, "Informe seu cpf");
     _validationContract.isRequired(req.body.senha, "Informe sua senha");
 
     if (!_validationContract.isValid()) {
@@ -77,8 +80,7 @@ usuarioController.prototype.autenticar = async (req, res) => {
         res.status(400).send({ message: "Não foi possivel efetuar login", validation: _validationContract.errors() })
         return;
     }
-
-    let usuarioExistente = await _repo.authenticate(req.body.email, req.body.senha);
+    let usuarioExistente = await _repo.authenticate(req.body.cpf, req.body.senha);
     if (usuarioExistente) {
         res.status(200).send({
             usuario: usuarioExistente,

@@ -1,8 +1,11 @@
-import { MinhaContaPage } from './../minha-conta/minha-conta';
-import { MeusAgendamentosPage } from './../meus-agendamentos/meus-agendamentos';
+import { PrestadorListaSolicitacoesPage } from './../prestador-lista-solicitacoes/prestador-lista-solicitacoes';
+import { ConfigHelper } from './../../../../backup/IONIC/src/app/helpers/configHelpers';
+import { UsuarioProvider } from './../../providers/usuario/usuario';
+import { CadastroPage } from './../cadastro/cadastro';
 import { ServicosPage } from './../servicos/servicos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import 'rxjs/add/operator/map';
 
 @IonicPage()
 @Component({
@@ -10,25 +13,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  registerCredentials = { email: '', password: '' };
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  loginForm: any = {};
+
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     private usuarioSrv: UsuarioProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  abrirServicos():void{
+  abrirServicos(): void {
     this.navCtrl.setRoot(ServicosPage)
   }
-    
-goToMyOrders(){
-  this.navCtrl.push(MeusAgendamentosPage);
-}
 
-goToMyInfo(){
-  this.navCtrl.push(MinhaContaPage);
-}
+  goToRegister() {
+    this.navCtrl.push(CadastroPage)
+  }
 
+  async login(): Promise<void>{
+    let result = await this.usuarioSrv.autenticate(this.loginForm.cpf, this.loginForm.senha);
+    if(result.success){
+      UsuarioProvider.RegisterLogin(result.data)
+      console.log(result.data.isPrestador)
+    if(result.data.usuario.isPrestador){
+      console.log("entrei no prestador")
+        this.navCtrl.setRoot(PrestadorListaSolicitacoesPage)
+    }else{
+      console.log("entrei no cliente")
+      this.navCtrl.setRoot(ServicosPage)
+    }
+      console.log(result);
+    }
+  }
 }

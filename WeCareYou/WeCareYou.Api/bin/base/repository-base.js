@@ -8,6 +8,7 @@ class repositoryBase {
         this._model = mongoose.model(model);
     }
     async create(data) {
+        console.log(data)
         let modelo = new this._model(data);
         let resultado = await modelo.save();
         return resultado;

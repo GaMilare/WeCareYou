@@ -5,7 +5,7 @@ const variables = require('../bin/configurations/variables');
 
 //router
 const prestadorRouter = require('../routes/prestador-route');
-const clienteRouter = require('../routes/cliente-router');
+const agendamentoRouter = require('../routes/agendamento-router');
 const usuarioRouter = require('../routes/usuario-router');
 const servicoRouter = require('../routes/servico-router');
 
@@ -29,7 +29,7 @@ mongoose.connection.once('open', function() {
 
 //criando as rotas
 app.use('/api/prestador', prestadorRouter);
-app.use('/api/cliente', clienteRouter);
+app.use('/api/agendamento', agendamentoRouter);
 app.use('/api/usuario', usuarioRouter);
 app.use('/api/servico', servicoRouter);
 

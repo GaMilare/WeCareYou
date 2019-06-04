@@ -14,7 +14,7 @@
 
   <ion-row style="background-color: #009788; ">
     <ion-col style="text-align: center">
-      <img src="assets/imgs/WeCareYou-Logo200.jpg" class="img">
+      <img src="assets/imgs/WeCareYou_logoWhite.png" class="img">
     </ion-col>
   </ion-row>
   <div style="padding: 15px">
@@ -44,24 +44,25 @@
       </ion-item>
       <ion-item class="label-text">
         <ion-label>Preco: </ion-label>
-        <ion-label style="text-align: right"> {{cotacao.preco}} </ion-label>
+        <ion-label style="text-align: right"> {{cotacao.precoProposta}} </ion-label>
       </ion-item>
 
     </div>
 
     <ion-row>
       <ion-col>
-        <button ion-button expand="full" fill="outline" (click)="goToPrestador('ac1')"
+        <button ion-button expand="full" fill="outline" (click)="openWhatsApp()"
           style="text-align: center; width: 100%; height: 50px;">Chat</button>
       </ion-col>
       <ion-col>
-        <button ion-button expand="full" fill="outline" (click)="goToPrestador('ac1')"
+        <button ion-button expand="full" fill="outline" (click)="cancelarSolicitacao()"
           style="text-align: center; width: 100%; height: 50px; float: right;">Cancelar</button>
       </ion-col>
     </ion-row>
-    <ion-row >
+
+    <ion-row id="confirmar">
         <ion-col>
-            <button ion-button expand="full" fill="outline" (click)="goToPrestador('ac1')"
+            <button ion-button expand="full" fill="outline" (click)="aceitarSolicitacao()"
               style="text-align: center; width: 100%; height: 50px; float: right;">Confirmar</button>
         </ion-col>
     </ion-row>

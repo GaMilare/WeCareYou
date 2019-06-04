@@ -14,12 +14,10 @@
 
 
 <ion-content fullscreen>
-  <ion-row class="logo-row">
-    <ion-col></ion-col>
+  <ion-row class="logo-row" (click)="goToLogin()">
     <ion-col width-67>
-      <img src="assets/imgs/WeCareYou-Logo.jpg" />
+      <img src="assets/imgs/WeCareYou_logoWhite.png" class="img"/>
     </ion-col>
-    <ion-col></ion-col>
   </ion-row>
   <ion-row>
     <ion-list inset>
@@ -28,88 +26,103 @@
         <ion-list>
           <ion-item class="item-input">
             <ion-label class="label-text">Tipo de usuário</ion-label>
-            <ion-select class="label-text" [(ngModel)]="registerCredentials.userType" (ionChange)="onUserTypeChange()"
+            <ion-select class="label-text" [(ngModel)]="usuarioViewModel.isPrestador" (ionChange)="onUserTypeChange()"
               name="TipoUsuario" id="UserType">
-              <ion-option value="cliente">Cliente</ion-option>
-              <ion-option value="prestador">Prestador</ion-option>
+              <ion-option value="0">Cliente</ion-option>
+              <ion-option value="1">Prestador</ion-option>
             </ion-select>
           </ion-item>
         </ion-list>
 
         <div id="cliente">
-          <form (ngSubmit)="registerCliente()" #registerForm="ngForm">
+          <h3 style="color: #009788">Dados pessoais:</h3>
+          <form (ngSubmit)="goToAdress()" #registerForm="ngForm">
             <ion-item>
               <ion-label class="label-text">Nome: </ion-label>
-              <ion-input class="label-text" type="text" name="name"
-                [(ngModel)]="registerCredentials.name" required>
+              <ion-input class="label-text" type="text" name="cliente_nome" [(ngModel)]="usuarioViewModel.cliente_nome"
+                required>
               </ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Email: </ion-label>
-              <ion-input class="label-text" type="text" name="email"
-                [(ngModel)]="registerCredentials.email" required>
+              <ion-input class="label-text" type="text" name="cliente_email"
+                [(ngModel)]="usuarioViewModel.cliente_email" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Cpf: </ion-label>
+              <ion-input class="label-text" type="text" name="cliente_cpf" [(ngModel)]="usuarioViewModel.cliente_cpf"
+                required>
               </ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Celular: </ion-label>
-              <ion-input class="label-text" type="text" name="celphone"
-                [(ngModel)]="registerCredentials.celphone" required></ion-input>
+              <ion-input class="label-text" type="text" name="cliente_celular"
+                [(ngModel)]="usuarioViewModel.cliente_celular" required></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Senha: </ion-label>
-              <ion-input class="label-text" type="password" name="password"
-                [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input class="label-text" type="password" name="cliente_senha"
+                [(ngModel)]="usuarioViewModel.cliente_senha" required></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Confirmar Senha: </ion-label>
-              <ion-input class="label-text" type="password" name="confirmation_password"
-                [(ngModel)]="registerCredentials.confirmation_password" required></ion-input>
+              <ion-input class="label-text" type="password" name="cliente_senhaConfirmacao"
+                [(ngModel)]="usuarioViewModel.cliente_senhaConfirmacao" required></ion-input>
             </ion-item>
 
             <ion-row>
               <ion-col class="signup-col">
-                <button ion-button style="background-color: #009788; color: white" full type="submit"
-                  [disabled]="!registerForm.form.valid">Cadastrar</button>
+                <button ion-button style="background-color: #009788; color: white" full type="submit">Cadastrar enderecos</button>
               </ion-col>
             </ion-row>
           </form>
         </div>
 
         <div id="prestador">
-          <form (ngSubmit)="registerPrestador()" #registerForm="ngForm">
+          <h3 style="color: #009788">Dados pessoais:</h3>
+          <form (ngSubmit)="goToAdress()" #registerForm="ngForm">
             <ion-item>
               <ion-label class="label-text">Nome: </ion-label>
-              <ion-input class="label-text" type="text" name="name"
-                [(ngModel)]="registerCredentials.name" required>
+              <ion-input class="label-text" type="text" name="prestador_nome"
+                [(ngModel)]="usuarioViewModel.prestador_nome" required>
               </ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Email: </ion-label>
-              <ion-input class="label-text" type="text" name="email"
-                [(ngModel)]="registerCredentials.email" required>
+              <ion-input class="label-text" type="text" name="prestador_email"
+                [(ngModel)]="usuarioViewModel.prestador_email" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Cpf: </ion-label>
+              <ion-input class="label-text" type="text" name="prestador_cpf"
+                [(ngModel)]="usuarioViewModel.prestador_cpf" required>
               </ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Celular: </ion-label>
-              <ion-input class="label-text" type="text" name="celphone"
-                [(ngModel)]="registerCredentials.celphone" required></ion-input>
+              <ion-input class="label-text" type="text" name="prestador_celular"
+                [(ngModel)]="usuarioViewModel.prestador_celular" required></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Coren: </ion-label>
-              <ion-input class="label-text" type="text" name="coren"
-                [(ngModel)]="registerCredentials.coren" required></ion-input>
+              <ion-input class="label-text" type="text" name="coren" [(ngModel)]="usuarioViewModel.coren" required>
+              </ion-input>
             </ion-item>
 
             <ion-label class="label-text">Servicos: </ion-label>
-            <ion-select multiple="true" class="label-text" [(ngModel)]="registerCredentials.services" name="Servicos"
-              id="Services">
+            <ion-select multiple="true" class="label-text" [(ngModel)]="usuarioViewModel.prestador_servicos"
+              name="Servicos" id="Services">
               <ion-option value="hc1">Home care n1</ion-option>
               <ion-option value="hc2">Home care n2</ion-option>
               <ion-option value="hc3">Home care n3</ion-option>
@@ -118,24 +131,103 @@
 
             <ion-item>
               <ion-label class="label-text">Senha: </ion-label>
-              <ion-input class="label-text" type="password" name="password"
-                [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input class="label-text" type="password" name="prestador_senha"
+                [(ngModel)]="usuarioViewModel.prestador_senha" required></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Confirmar Senha: </ion-label>
-              <ion-input class="label-text" type="password" name="confirmation_password"
-                [(ngModel)]="registerCredentials.confirmation_password" required></ion-input>
+              <ion-input class="label-text" type="password" name="prestador_senhaConfirmacao"
+                [(ngModel)]="usuarioViewModel.prestador_senhaConfirmacao" required></ion-input>
             </ion-item>
 
             <ion-row>
               <ion-col class="signup-col">
-                  <button ion-button style="background-color: #009788; color: white" full type="submit"
-                  [disabled]="!registerForm.form.valid">Cadastrar</button>
+                <button ion-button style="background-color: #009788; color: white" full type="submit">Cadastrar enderecos</button>
               </ion-col>
             </ion-row>
           </form>
         </div>
+
+        <div id="CadastroEndereco">
+          <h3 style="color: #009788">Dados residenciais:</h3>
+          <ion-item>
+              <ion-label class="label-text">CEP: </ion-label>
+              <ion-input class="label-text" type="text" name="cep" [(ngModel)]="usuarioViewModel.cep"
+                (ionBlur)="usuarioViewModel.cep = onUserTypeCep()" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Cidade: </ion-label>
+              <ion-input class="label-text" type="text" name="usuarioViewModel.cidade" [(ngModel)]="usuarioViewModel.cidade" disabled></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Estado: </ion-label>
+              <ion-input class="label-text" type="text" name="usuarioViewModel.uf" [(ngModel)]="usuarioViewModel.uf" disabled></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Rua: </ion-label>
+              <ion-input class="label-text" type="text" name="usuarioViewModel.rua" [(ngModel)]="usuarioViewModel.rua" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Numero: </ion-label>
+              <ion-input class="label-text" type="text" name="usuarioViewModel.numero" [(ngModel)]="usuarioViewModel.numero" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="label-text">Complemento: </ion-label>
+              <ion-input class="label-text" type="text" name="usuarioViewModel.complemento" [(ngModel)]="usuarioViewModel.complemento"
+                required></ion-input>
+            </ion-item>
+
+            <ion-row>
+              <ion-col class="signup-col">
+                <button ion-button style="background-color: #009788; color: white" full (click)="goToPaymentInfo()">Cadastrar Dados Pagamento</button>
+              </ion-col>
+            </ion-row>
+        </div>
+
+        <div id="CadastroDadosPagamento">
+          <h3 style="color: #009788">Dados pagamento:</h3>
+          <ion-item>
+            <ion-label class="label-text">Nome: </ion-label>
+            <ion-input class="label-text" type="text" name="usuarioViewModel.pagamentoNome" [(ngModel)]="usuarioViewModel.pagamentoNome"
+              required>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="label-text">Numero Cartao: </ion-label>
+            <ion-input class="label-text" type="text" name="numeroCartao" [(ngModel)]="usuarioViewModel.numeroCartao"
+              required>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="label-text">Data Vencimento: </ion-label>
+            <ion-input class="label-text" type="text" name="dataVencimento"
+              [(ngModel)]="usuarioViewModel.dataVencimento" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="label-text">Cód.Seguranca: </ion-label>
+            <ion-input class="label-text" type="text" name="codSeguranca" [(ngModel)]="usuarioViewModel.codSeguranca"
+              required></ion-input>
+          </ion-item>
+
+          <ion-row>
+            <ion-col class="signup-col">
+              <button ion-button style="background-color: #009788; color: white" full
+                (click)="cadastrar()">Cadastrar usuario</button>
+            </ion-col>
+          </ion-row>
+        </div>
+
 
       </ion-col>
     </ion-list>

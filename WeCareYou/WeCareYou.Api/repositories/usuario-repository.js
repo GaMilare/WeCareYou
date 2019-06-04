@@ -6,16 +6,17 @@ class usuarioRepository{
     
     constructor() {
         this._base = new base('usuario');
-        this.projection = 'nome email _id';
+        this.projection = 'nome email _id celular isPrestador localizacao';
     }
 
     async isEmailExistente(Email) {
         return await this._base._model.findOne({ email: Email }, this.projection)
     }
 
-    async authenticate(email,senha){
+    async authenticate(cpf,senha){
+        console.log(cpf, senha);
         let _hashSenha = md5(senha);
-        return await this._base._model.findOne({email: email, senha:_hashSenha}, this.projection);
+        return await this._base._model.findOne({cpf: cpf, senha:_hashSenha}, this.projection);
     }
 
     async create(data) {
@@ -34,11 +35,11 @@ class usuarioRepository{
     }
 
     async getAll() {
-        return await this._base._model.find({}, this.projection);
+        return await this._base._model.find({});
     }
 
     async getById(id) {
-        return await this._base._model.findById(id, 'nome email _id foto');
+        return await this._base._model.findById(id);
     }
 
     async delete(id){

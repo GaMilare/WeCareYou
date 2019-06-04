@@ -12,8 +12,9 @@ const usuarioModel = new schema({
     celular: {type:String, required: true},
     senha:{type:String, required:true},
     senhaConfirmacao:{type:String, required:true},
-    servico: {type: Object, required:true},
+    servicos: {type: Object},
     localizacao: {type: Object, required: true},
+    dadosPagamento: {type: Object, required: true},
     ativo: {type: Boolean, required: true},
     dataCriacao: {type:Date, default:Date.now}
 }, {versionKey:false});

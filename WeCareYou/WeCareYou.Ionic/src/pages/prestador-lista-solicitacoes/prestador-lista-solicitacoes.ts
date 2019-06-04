@@ -1,6 +1,11 @@
-import Jquery from 'jQuery';
+import { ServicoModel } from './../../app/models/servicoModel';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
+import { ServicoProvider } from '../../providers/servico/servico';
+import { ConfigHelper } from '../../app/helpers/configHelpers';
+import { AlertProvider } from '../../providers/alert/alert';
+import { ResumoCotacaoPrestadorPage } from '../resumo-cotacao-prestador/resumo-cotacao-prestador';
 
 /**
  * Generated class for the PrestadorListaSolicitacoesPage page.
@@ -15,44 +20,57 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'prestador-lista-solicitacoes.html',
 })
 export class PrestadorListaSolicitacoesPage {
-  loggedUserInfo = { name: 'Daniel'}
-  cotacoes = [];
-  itemExpandHeight: number = 100;
+  cotacoes: Array<ServicoModel> = new Array<ServicoModel>()
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.cotacoes = [
-      { status: "Pendente", data: '13/07/2019', hora: '10:00', nomecliente: 'Daniel Alojs', servico: 'Home care grau 2', preco: 'R$ 100,00',expanded: false, rua:"r.alameda", numero:"12", complemento:"14b", formaDePagamento:"cartao" },
-      { status: "Pendente", data: '25/07/2019', hora: '14:00', nomecliente: 'Giovani S.', servico: 'Home care grau 1', preco: 'R$ 50,00', expanded: false, rua:"r.alameda", numero:"12", complemento:"14b", formaDePagamento:"cartao" },
-      { status: "Pendente", data: '04/08/2019', hora: '10:00', nomecliente: 'Mia K.', servico: 'Acomp. médico', preco: 'R$ 62,90', expanded: false, rua:"r.alameda", numero:"12", complemento:"14b", formaDePagamento:"cartao" }
-    ];
-    this.loggedUserInfo.name;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public http: HttpClient,
+    private servicoSrv: ServicoProvider,
+    private alertSrv: AlertProvider) {
   }
 
   ionViewDidLoad() {
-    for(let u = 0; u < this.cotacoes.length ; u++ ){
-      let id = "#"+u;
-      Jquery(id).toggle();
-    }
-    console.log('ionViewDidLoad PrestadorListaSolicitacoesPage');
+    this.getServicos();
+    console.log(this.cotacoes);
+    console.log('ionViewDidLoad MeusAgendamentosPage');
   }
 
-  expandItem(item){
- 
-    this.cotacoes.map((listItem) => {
-
-        if(item == listItem){
-            listItem.expanded = !listItem.expanded;
-        } else {
-            listItem.expanded = false;
+  async getServicos() {
+    try {
+      let loggedUser = JSON.parse(localStorage.getItem(ConfigHelper.storageKeys.user));
+      let result = await this.servicoSrv.getServicos();
+      if (result.success) {
+        let cotacoes = <Array<ServicoModel>>result.data;
+        console.log(cotacoes)
+        for (var cotacao of cotacoes) {
+          console.log(cotacao)
+          console.log(loggedUser)
+          if ((cotacao.prestadorId == loggedUser._id || cotacao.prestadorId == "") && (cotacao.cidade == loggedUser.localizacao.cidade) )
+          {
+            this.cotacoes.push(cotacao);
+          }
         }
-
-        return listItem;
-
-    });
+        console.log(result.data);
+      }
+    } catch (error) {
+      console.log('Problema ao carregar os seus agendamentos, motivo: ', error);
+    }
   }
 
-  exibir(i){
-    let id = "#"+i;
-    Jquery(id).toggle();
+  goToServiceDetail(id) {
+    for (var cotacao of this.cotacoes) {
+      console.log(cotacao)
+      if (cotacao._id == id) {
+        if(cotacao.statusPrestador == "rejeitada" ){
+          this.alertSrv.alert("Atenção", "Você rejeitou esse serviço")
+        }else if ((cotacao.statusCliente == "aceita" || cotacao.statusCliente == "rejeitada")) {
+          this.navCtrl.push(ResumoCotacaoPrestadorPage, { serviceId: id })
+        }
+        else{
+          this.alertSrv.toast("Aguarde sua solicitacao ser aceita", "bottom");
+        }
+      }
+    }
   }
 }

@@ -17,7 +17,7 @@
     
     <ion-col>
         
-      <img src="assets/imgs/WeCareYou-Logo200.jpg" class="img">
+      <img src="assets/imgs/WeCareYou_logoWhite.png" class="img">
       
     </ion-col>
     
@@ -25,7 +25,7 @@
   
   <div style="padding: 15px">
     <ion-row>
-      <p class="titulo">Bem vindo {{loggedUserInfo.name}}!</p>
+      <p class="titulo">Bem vindo {{loggedUserInfo.nome}}!</p>
       <ion-col col-12 text-center>
         <p class="subtitulo"> Selecione o serviço desejado.</p>
       </ion-col>
@@ -73,30 +73,22 @@
       <ion-col>
         <div id="hc1" class="big-box">
           <h2>Idosos grau 1</h2>
-          <p>Home care para o grau 1 representa o serviço de home care menos intenso, voltado a companhia e cuidados
-            basicos
-            para com o paciente</p>
+          <p>Grau de Dependência I -idosos independentes, mesmo que requeiram uso de equipamentos de autoajuda</p>
           <button ion-button expand="full" fill="outline" (click)="goToPrestador('hc1')">selecionar serviço</button>
         </div>
         <div id="hc2" class="big-box">
           <h2>Idosos grau 2</h2>
-          <p>Home care para o grau 1 representa o serviço de home care menos intenso, voltado a companhia e cuidados
-            basicos
-            para com o paciente</p>
+          <p>Grau de  Dependência  II -idosos com dependência  em até  três atividades de  autocuidado para  a  vida  diária  tais  como:  alimentação,  mobilidade,  higiene;  sem  comprometimento cognitivo ou comalteração cognitiva controlada.</p>
           <button ion-button expand="full" fill="outline" (click)="goToPrestador('hc2')">selecionar serviço</button>
         </div>
         <div id="hc3" class="big-box">
           <h2>Idosos grau 3</h2>
-          <p>Home care para o grau 1 representa o serviço de home care menos intenso, voltado a companhia e cuidados
-            basicos
-            para com o paciente</p>
+          <p>Grau de Dependência III -idosos com dependência que requeiram assistência em todas as atividades de autocuidado para a vida diária e ou com comprometimento cognitivo.</p>
           <button ion-button expand="full" fill="outline" (click)="goToPrestador('hc3')">selecionar serviço</button>
         </div>
         <div id="ac1" class="big-box">
           <h2>Acompanhamento medico</h2>
-          <p>Acompanhamento médico representa o serviço de home care menos intenso, voltado a companhia e cuidados
-            basicos
-            para com o paciente</p>
+          <p>Acompanhamento médico representa o serviço que ajuda a acompanhar o paciente com dificuldade de locomoção ou não, da sua residencia até a consulta e o caminho reverso.</p>
           <button ion-button expand="full" fill="outline" (click)="goToPrestador('ac1')">selecionar serviço</button>
         </div>
 
@@ -107,14 +99,14 @@
           <ion-row>
             <ion-item>
               <ion-label>Data</ion-label>
-              <ion-datetime display-format="MM/YYYY" picker-format="MMMM YYYY"></ion-datetime>
+              <ion-datetime display-format="MM/YYYY" picker-format="MMMM YYYY" [(ngModel)]="quotation.data"></ion-datetime>
             </ion-item>
           </ion-row>
           <!-- <ion-label class="label-text">hora: </ion-label> -->
           <ion-row>
             <ion-item>
               <ion-label>Horas</ion-label>
-              <ion-datetime displayFormat="HH:mm"></ion-datetime>
+              <ion-datetime displayFormat="HH:mm" [(ngModel)]="quotation.hora"></ion-datetime>
             </ion-item>
           </ion-row>
           <button ion-button expand="full" fill="outline" (click)="goToSummaryQuotation('ac1')">Procurar prestador</button>

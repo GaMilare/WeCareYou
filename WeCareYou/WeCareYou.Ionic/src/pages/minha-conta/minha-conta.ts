@@ -1,6 +1,9 @@
+import { UsuarioProvider } from './../../providers/usuario/usuario';
 import Jquery from 'jQuery';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { UsuarioModel } from '../../app/models/usuarioModel';
+import { ConfigHelper } from '../../app/helpers/configHelpers';
 
 /**
  * Generated class for the MinhaContaPage page.
@@ -15,90 +18,77 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'minha-conta.html',
 })
 export class MinhaContaPage {
-  LoggedUser = {}
-  LoggedUser2 = {}
+  usuario: UsuarioModel = new UsuarioModel();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.LoggedUser = {
-      isPrestador: 0,
-      nome: "Paulo S.",
-      email: "paulo@gmail.com",
-      celular: "11947472121",
-      cpf:"33344411122",
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private usuarioSrv: UsuarioProvider) {
+    this.usuario = {
+      nome: '',
+      isPrestador: false,
+      email: '',
+      cpf: '',
+      coren: '',
+      celular: '',
+      senha: '',
+      senhaConfirmacao: '',
+      servicos: {},
       localizacao: {
-        cep: "09190450",
-        rua: "rua teste",
-        uf: "SP",
-        cidade: "Santo Andre",
-        numero: 100,
-        complemento: "sala 10",
-        latitude: -23.7201494,
-        longitude: -46.5871313
+        cep: '',
+        rua: '',
+        uf: '',
+        cidade: '',
+        numero: '',
+        complemento: ''
       },
-      servicos:{
-        servico:"hc1"
+      dadosPagamento: {
+        pagamentoNome: '',
+        numeroCartao: '',
+        dataVencimento: '',
+        codSeguranca: ''
       },
-      dadosPagamento:{
-        cardName: "Paulo S",
-        cardNumber: "4111111111111111",
-        cardExpireDate:"10/22",
-        secretCode:""        
-      }
-    };
-    this.LoggedUser2 = {
-      isPrestador: 0,
-      nome: "Paulo S.",
-      email: "paulo@gmail.com",
-      celular: "11947472121",
-      cpf:"33344411122",
-      localizacao: {
-        cep: "09190450",
-        rua: "rua teste",
-        uf: "SP",
-        cidade: "Santo Andre",
-        numero: 100,
-        complemento: "sala 10",
-        latitude: -23.7201494,
-        longitude: -46.5871313
-      },
-      servicos:{
-        servico:"hc1"
-      },
-      dadosPagamento:{
-        cardName: "Paulo S",
-        cardNumber: "4111111111111111",
-        cardExpireDate:"10/22",
-        secretCode:""        
-      }
-    };
+      ativo: true
+    }
   }
 
   ionViewDidLoad() {
-
+    this.getUserInfo();
     Jquery("#dadosResidenciais").hide();
     Jquery("#dadosPagamento").hide();
-    console.log(this.LoggedUser);
     console.log('ionViewDidLoad MinhaContaPage');
   }
 
-  exibe(value){
+  exibe(value) {
     console.log(value);
-    if(value == "dadosPessoais"){
+    if (value == "dadosPessoais") {
       Jquery("#dadosPessoais").show();
       Jquery("#dadosResidenciais").hide();
       Jquery("#dadosPagamento").hide();
     }
-    if(value == "dadosResidenciais"){
+    if (value == "dadosResidenciais") {
       Jquery("#dadosResidenciais").show();
       Jquery("#dadosPessoais").hide();
       Jquery("#dadosPagamento").hide();
     }
-    if(value == "dadosPagamento"){
+    if (value == "dadosPagamento") {
       Jquery("#dadosPagamento").show();
       Jquery("#dadosPessoais").hide();
       Jquery("#dadosResidenciais").hide();
-      
+
     }
-    
+  }
+
+  async getUserInfo() {
+    console.log("buscando cliente")
+    let user = JSON.parse(localStorage.getItem(ConfigHelper.storageKeys.user));
+    console.log(user);
+    let result = await this.usuarioSrv.getUserById(user._id);
+    if (result.success) {
+      this.usuario = result.data;
+      console.log(result);
+    } else {
+      console.log("não buscou")
+    }
   }
 }

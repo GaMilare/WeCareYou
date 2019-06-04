@@ -19,24 +19,21 @@
 </button> -->
 <ion-row class="logo-row">
   <ion-col width-67>
-    <img src="assets/imgs/WeCareYou-Logo200.jpg"/>
+    <img src="assets/imgs/WeCareYou_logoWhite.png"/>
   </ion-col>
 </ion-row>
 <div class="login-box">
 
-  <form (ngSubmit)="abrirServicos()" #registerForm="ngForm">
-    <ion-row>
+  <ion-row>
       <ion-col>
         <ion-list inset>
           
           <ion-item>
-            <ion-input type="text" placeholder="CPF" name="CPF"></ion-input>
-            <!-- [(ngModel)]="registerCredentials.email" required -->
+            <ion-input type="text" placeholder="CPF" name="CPF" [(ngModel)]="loginForm.cpf"></ion-input>
           </ion-item>
           
           <ion-item>
-            <ion-input type="password" placeholder="Senha" name="Password" ></ion-input>
-            <!-- [(ngModel)]="registerCredentials.password" required> -->
+            <ion-input type="password" placeholder="Senha" name="Senha" [(ngModel)]="loginForm.senha"></ion-input>
           </ion-item>
           
         </ion-list>
@@ -45,11 +42,14 @@
     
     <ion-row>
       <ion-col class="signup-col">
-        <button ion-button class="submit-btn" full type="submit" >Login</button> 
-        <button ion-button class="register-btn" block clear >Criar conta</button>
+        <button ion-button class="submit-btn" full (click)="login()">Login</button> 
+      
       </ion-col>
     </ion-row>
+
+  <ion-row>
+      <button ion-button class="register-btn" block clear (click)="goToRegister()" >Criar conta</button>
+    </ion-row>
     
-  </form>
 </div>
 </ion-content>

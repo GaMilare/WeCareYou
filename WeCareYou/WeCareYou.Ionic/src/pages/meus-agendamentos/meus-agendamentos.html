@@ -16,27 +16,25 @@
   <!-- <div style='height: 20%'></div> -->
 
   <ion-row class="logo-row">
-
-    <ion-col>
-
-      <img src="assets/imgs/WeCareYou-Logo200.jpg" class="img">
-
+    <ion-col width-67>
+      <img src="assets/imgs/WeCareYou_logoWhite.png" class="img"/>
     </ion-col>
-
   </ion-row>
+
   <div style="padding: 15px">
     <h2 style="text-align: center; color: #009788">Seus agendamentos</h2>
-    <ion-item no-lines *ngFor="let cotacao of cotacoes" (click)="goToHorario(prestador.id)">
+    <ion-item no-lines *ngFor="let cotacao of cotacoes" (click)="goToServiceDetail(cotacao._id)">
       <ion-card style="background-color: #009788">
         <ion-card-content>
           <ion-col col-10 >
-            <p class="card-text">Status: {{cotacao.status}}</p>
+            <p class="card-text">Status Prestador: {{cotacao.statusPrestador}}</p>
+              <p class="card-text">Status Cliente: {{cotacao.statusCliente}}</p>
             <p class="card-text">Endereço: {{cotacao.endereco}}</p>
             <p class="card-text">Servico: {{cotacao.servico}}</p>
             <p class="card-text">Data: {{cotacao.data}}</p>
             <p class="card-text">Hora: {{cotacao.hora}} </p>
-            <p class="card-text">Preco médio: {{cotacao.preco}} </p>
-            <p class="card-text">Preco ofertado: {{cotacao.preco}} </p>
+            <p class="card-text">Preco médio: {{cotacao.precoMedio}} </p>
+            <p class="card-text">Preco ofertado: {{cotacao.precoProposta}} </p>
           </ion-col>
         </ion-card-content>
       </ion-card>

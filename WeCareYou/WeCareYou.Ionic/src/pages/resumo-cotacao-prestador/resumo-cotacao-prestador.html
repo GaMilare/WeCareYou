@@ -1,0 +1,72 @@
+<ion-header style="background-color: #009788">
+  <ion-navbar>
+
+    <ion-buttons start style="order: 1;">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen>
+  <!-- <div style='height: 20%'></div> -->
+
+  <ion-row style="background-color: #009788; ">
+    <ion-col style="text-align: center">
+      <img src="assets/imgs/WeCareYou_logoWhite.png" class="img">
+    </ion-col>
+  </ion-row>
+  <div style="padding: 15px">
+    <div class="big-box">
+
+      <h2 style="text-align: center">Detalhes do agendamento</h2>
+      
+      <ion-item class="label-text">
+        <ion-label>Nome Cliente:</ion-label>
+        <ion-label style="text-align: right"> {{cotacao.nomeCliente}} </ion-label>
+      </ion-item>
+      <ion-item class="label-text">
+          <ion-label>Endereço:</ion-label>
+          <ion-label style="text-align: right"> {{cotacao.endereco}} </ion-label>
+        </ion-item>
+      <ion-item class="label-text">
+        <ion-label>Serviço: </ion-label>
+        <ion-label style="text-align: right"> {{cotacao.servico}} </ion-label>
+      </ion-item>
+      <ion-item class="label-text">
+        <ion-label>Data: </ion-label>
+        <ion-label style="text-align: right"> {{cotacao.data}} </ion-label>
+      </ion-item>
+      <ion-item class="label-text">
+        <ion-label>Hora: </ion-label>
+        <ion-label style="text-align: right"> {{cotacao.hora}} </ion-label>
+      </ion-item>
+      <ion-item class="label-text">
+        <ion-label>Preco: </ion-label>
+        <ion-input style="text-align: right" [(ngModel)]="cotacao.precoProposta"> {{cotacao.precoMedio}} </ion-input>
+      </ion-item>
+
+    </div>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button expand="full" fill="outline" (click)="openWhatsApp()"
+          style="text-align: center; width: 100%; height: 50px;">Chat</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button expand="full" fill="outline" (click)="cancelarSolicitacaoPrestador()"
+          style="text-align: center; width: 100%; height: 50px; float: right;">Cancelar</button>
+      </ion-col>
+    </ion-row>
+    <ion-row id="confirmar">
+        <ion-col>
+            <button ion-button expand="full" fill="outline" (click)="aceitarSolicitacaoPrestador()"
+              style="text-align: center; width: 100%; height: 50px; float: right;">Confirmar</button>
+        </ion-col>
+    </ion-row>
+  </div>
+
+
+
+</ion-content>
