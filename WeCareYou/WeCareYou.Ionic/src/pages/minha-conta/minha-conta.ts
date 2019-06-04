@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioModel } from '../../app/models/usuarioModel';
 import { ConfigHelper } from '../../app/helpers/configHelpers';
+import { ServicosPage } from '../servicos/servicos';
 
 /**
  * Generated class for the MinhaContaPage page.
@@ -48,7 +49,8 @@ export class MinhaContaPage {
         dataVencimento: '',
         codSeguranca: ''
       },
-      ativo: true
+      ativo: true,
+      _id:''
     }
   }
 
@@ -89,6 +91,18 @@ export class MinhaContaPage {
       console.log(result);
     } else {
       console.log("não buscou")
+    }
+  }
+
+  alteraDados(){
+    this.updateUser();
+  }
+
+  async updateUser(){
+    let result = await this.usuarioSrv.update(this.usuario._id ,this.usuario);
+    if (result.success) {
+      this.navCtrl.setRoot(ServicosPage)
+      console.log(result);
     }
   }
 }

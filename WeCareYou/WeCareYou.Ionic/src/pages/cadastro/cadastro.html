@@ -54,14 +54,14 @@
             <ion-item>
               <ion-label class="label-text">Cpf: </ion-label>
               <ion-input class="label-text" type="text" name="cliente_cpf" [(ngModel)]="usuarioViewModel.cliente_cpf"
-                required>
+                required [brmasker]="{len:11}">
               </ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Celular: </ion-label>
               <ion-input class="label-text" type="text" name="cliente_celular"
-                [(ngModel)]="usuarioViewModel.cliente_celular" required></ion-input>
+                [(ngModel)]="usuarioViewModel.cliente_celular" required [brmasker]="{mask:'(00)00000-0000)', len:14}"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -104,14 +104,14 @@
             <ion-item>
               <ion-label class="label-text">Cpf: </ion-label>
               <ion-input class="label-text" type="text" name="prestador_cpf"
-                [(ngModel)]="usuarioViewModel.prestador_cpf" required>
+                [(ngModel)]="usuarioViewModel.prestador_cpf" required [brmasker]="{len:11}">
               </ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label class="label-text">Celular: </ion-label>
               <ion-input class="label-text" type="text" name="prestador_celular"
-                [(ngModel)]="usuarioViewModel.prestador_celular" required></ion-input>
+                [(ngModel)]="usuarioViewModel.prestador_celular" required [brmasker]="{mask:'(00)00000-0000', len:14}"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -204,20 +204,20 @@
           <ion-item>
             <ion-label class="label-text">Numero Cartao: </ion-label>
             <ion-input class="label-text" type="text" name="numeroCartao" [(ngModel)]="usuarioViewModel.numeroCartao"
-              required>
+              required [brmasker]="{mask:'0000.0000.0000.0000', len:20}">
             </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label class="label-text">Data Vencimento: </ion-label>
             <ion-input class="label-text" type="text" name="dataVencimento"
-              [(ngModel)]="usuarioViewModel.dataVencimento" required></ion-input>
+              [(ngModel)]="usuarioViewModel.dataVencimento" required [brmasker]="{mask:'00/00', len:5}"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label class="label-text">Cód.Seguranca: </ion-label>
             <ion-input class="label-text" type="text" name="codSeguranca" [(ngModel)]="usuarioViewModel.codSeguranca"
-              required></ion-input>
+              required [brmasker]="{len:3}"></ion-input>
           </ion-item>
 
           <ion-row>

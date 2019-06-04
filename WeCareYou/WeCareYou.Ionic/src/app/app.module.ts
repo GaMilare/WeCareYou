@@ -22,6 +22,7 @@ import { ServicoProvider } from '../providers/servico/servico';
 import { MeusAgendamentosPage } from '../pages/meus-agendamentos/meus-agendamentos';
 import { ResumoCotacaoPrestadorPage } from '../pages/resumo-cotacao-prestador/resumo-cotacao-prestador';
 import { HelperProvider } from '../providers/helper/helper';
+import { BrMaskerModule } from 'brmasker-ionic-3';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HelperProvider } from '../providers/helper/helper';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrMaskerModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

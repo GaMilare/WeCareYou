@@ -41,6 +41,11 @@ export class UsuarioProvider extends ProviderBase<UsuarioModel>{
     return (localStorage.getItem(ConfigHelper.storageKeys.token) != undefined);
   }
 
+  async update(id:string,model: UsuarioModel): Promise<HttpResultModel> {
+    console.log(`${this.url}/` + id)
+    return this.http.put(`${this.url}/` + id, model);
+  }
+
 }
 
 

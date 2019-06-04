@@ -11,6 +11,7 @@ export class UsuarioModel{
     localizacao: {};
     dadosPagamento: {};
     ativo: boolean;
+    _id:string;
 }
 
 export class UsuarioViewModel{

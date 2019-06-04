@@ -57,7 +57,7 @@
           <ion-input type="password" placeholder="Senha" name="Senha" ></ion-input>
         </ion-item>
         <ion-row>
-          <button ion-button style="width: 100%;background-color: #009788; color: white" (click)=alteraDados(usuario)>Alterar dados</button>
+          <button ion-button style="width: 100%;background-color: #009788; color: white" (click)="alteraDados()">Alterar dados</button>
         </ion-row>        
     </div>
     <div class="big-box" id="dadosResidenciais">
@@ -88,7 +88,7 @@
           <ion-label style="text-align: right"> {{usuario.localizacao.uf}} </ion-label>
         </ion-item>
         <ion-row>
-            <button ion-button style="width: 100%; background-color: #009788; color: white" (click)=alteraDados(usuario)>Alterar dados</button>
+            <button ion-button style="width: 100%; background-color: #009788; color: white" (click)="alteraDados()">Alterar dados</button>
           </ion-row> 
     </div>
 
@@ -97,22 +97,22 @@
       
         <ion-item class="label-text">
           <ion-label>Nome Prestador:</ion-label>
-          <ion-label style="text-align: right"> {{usuario.dadosPagamento.cardName}} </ion-label>
+          <ion-input style="text-align: right" [(ngModel)]="usuario.dadosPagamento.cardName"> {{usuario.dadosPagamento.cardName}} </ion-input>
         </ion-item>
         <ion-item class="label-text">
             <ion-label>Nº cartão :</ion-label>
-            <ion-label style="text-align: right"> {{usuario.dadosPagamento.cardNumber}} </ion-label>
+            <ion-input style="text-align: right" [(ngModel)]="usuario.dadosPagamento.cardNumber" [brmasker]="{mask:'0000.0000.0000.0000', len:20}"> {{usuario.dadosPagamento.cardNumber}} </ion-input>
           </ion-item>
         <ion-item class="label-text">
           <ion-label>Data: </ion-label>
-          <ion-label style="text-align: right"> {{usuario.dadosPagamento.codSeguranca}} </ion-label>
+          <ion-input style="text-align: right" [(ngModel)]="usuario.dadosPagamento.data" [brmasker]="{mask:'00/00', len:5}"> {{usuario.dadosPagamento.cardExpireDate}} </ion-input>
         </ion-item>
         <ion-item class="label-text">
-          <ion-label>Data: </ion-label>
-          <ion-datetime display-format="MM/YYYY" picker-format="MMMM YYYY" ></ion-datetime>
+          <ion-label>Chave de segurança: </ion-label>
+          <ion-input style="text-align: right" [(ngModel)]="usuario.dadosPagamento.secretCode">  </ion-input>
         </ion-item>
         <ion-row>
-            <button ion-button style="width: 100%; background-color: #009788; color: white" (click)=alteraDados(usuario)>Alterar dados</button>
+            <button ion-button style="width: 100%; background-color: #009788; color: white" (click)="alteraDados()">Alterar dados</button>
           </ion-row> 
     </div>
   </div>

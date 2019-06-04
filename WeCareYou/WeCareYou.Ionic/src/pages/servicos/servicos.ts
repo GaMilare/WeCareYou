@@ -1,4 +1,4 @@
-import { ServicoModel, ServicoEnumModel } from './../../app/models/servicoModel';
+import { ServicoModel} from './../../app/models/servicoModel';
 import { ConfigHelper } from './../../app/helpers/configHelpers';
 import Jquery from 'jQuery';
 import { Component } from '@angular/core';

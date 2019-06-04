@@ -1,5 +1,4 @@
 import { PrestadorListaSolicitacoesPage } from './../prestador-lista-solicitacoes/prestador-lista-solicitacoes';
-import { ConfigHelper } from './../../../../backup/IONIC/src/app/helpers/configHelpers';
 import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { CadastroPage } from './../cadastro/cadastro';
 import { ServicosPage } from './../servicos/servicos';
